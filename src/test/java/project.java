@@ -58,7 +58,7 @@ public class project {
         firstMovie.click();
 
         //- Scroll vertically and choose ‘კავეა ისთ ფოინთი’ [ჰორიზონტალურად დასქროლვა და შემდეგ ვერტიკალურად, რომ მივწვდე ისთ ფოინთს]
-        WebElement mostRightTheatre = driver.findElement(By.xpath("//ul[@class='cinema-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all']/li[last()]"));
+        WebElement mostRightTheatre = driver.findElement(By.xpath("//ul[contains(@class, 'cinema-tabs ui')]/li[last()]"));
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", mostRightTheatre);
         js.executeScript("window.scrollBy(0, -230)");
@@ -66,14 +66,14 @@ public class project {
         eastPoint.click();
 
         //- Check that only ‘კავეა ისთ ფოინთი’ options are returned
-        List<WebElement> movieOptions = driver.findElements(By.xpath("//div[@class='ui-tabs-panel ui-widget-content ui-corner-bottom'][@aria-hidden='false']/div/div[@aria-hidden='false']/a/p[@class='cinema-title']"));
+        List<WebElement> movieOptions = driver.findElements(By.xpath("//div[contains(@class,'ui')][@aria-hidden='false']/div/div[@aria-hidden='false']/a/p[@class='cinema-title']"));
         for (WebElement element : movieOptions
         ) {
             Assert.assertEquals(element.getText(), "კავეა ისთ ფოინთი");
         }
 
         // - Click on last date and then click on last option
-        WebElement lastDAte = driver.findElement(By.xpath("//div[@aria-labelledby='ui-id-7']/div/ul/li[last()]"));
+        WebElement lastDAte = driver.findElement(By.xpath("//div[@id='384933']//ul//li[last()]"));
         lastDAte.click();
         List<WebElement> options = driver.findElements(By.cssSelector("div.seanse-details[aria-hidden='false'][style=\"display: flex;\"]"));
         WebElement lastOption = options.get(options.size() - 1);
@@ -108,7 +108,7 @@ public class project {
         legalEntity.click();
 
         //- Fill all mandatory with not valid data and optional fields, in case of dropdowns choose any non-default option
-        List<WebElement> allElements = driver.findElements(By.xpath("//div[@class='register-content-2 ui-tabs-panel ui-widget-content ui-corner-bottom']"));
+        List<WebElement> allElements = driver.findElements(By.xpath("//div[contains(@class, 'register-content-2')]"));
         wait.until(ExpectedConditions.visibilityOfAllElements(allElements));
 
         Select dropLegalForm = new Select(driver.findElement(By.xpath("//select[@name='LegalForm']")));
@@ -119,7 +119,7 @@ public class project {
         contactPersonGender.selectByVisibleText("ქალი");
         Select contactPersonCountryCode = new Select(driver.findElement(By.xpath("//select[@name='ContactPersonCountryCode']")));
         contactPersonCountryCode.selectByValue("AF");
-        List <WebElement> fields =driver.findElements(By.xpath("//div[@class='register-content-2 ui-tabs-panel ui-widget-content ui-corner-bottom']//input[@class='mail-input']"));
+        List <WebElement> fields =driver.findElements(By.xpath("//div[contains(@class, 'register-content-2')]//input[@class='mail-input']"));
         for (WebElement field: fields
              ) {
             field.sendKeys("777");
