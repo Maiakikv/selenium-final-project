@@ -96,7 +96,9 @@ public class project {
         List<WebElement> freeSeats = driver.findElements(By.xpath("//div[@class='seat free']/div[@class='seat-new-part']"));
         if (freeSeats.get(0).isEnabled()) {
             freeSeats.get(0).click();
-        } else System.out.println("All the seats are taken");
+        } else
+            freeSeats.get(0).click();
+            System.out.println("All the seats are taken");
 
         //- Register for a new account
         WebElement registerButton = driver.findElement(By.xpath("//p[@class='register']"));
