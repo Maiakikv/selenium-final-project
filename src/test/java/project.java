@@ -97,7 +97,7 @@ public class project {
         if (freeSeats.get(0).isEnabled()) {
             freeSeats.get(0).click();
         } else
-            freeSeats.get(0).click();
+            driver.findElement(By.xpath("//input[@name='SeatIds[0]']//ancestor-or-self::div[@class='seat-new-part']")).click();
             System.out.println("All the seats are taken");
 
         //- Register for a new account
